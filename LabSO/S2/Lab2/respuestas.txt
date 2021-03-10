@@ -1,0 +1,7 @@
+Pregunta 17:
+
+He modificado el Makefile añadiendo mis_funciones.c en la linea que compila,
+y he añadido mis_funciones.o en la línea que crea el ejecutable. Para el archivo 
+header, solamente lo he añadido en el archivo suma.c para que pueda encontrar
+el archivo mis_funciones, y en mis_funciones.c he añadido el .h también para que 
+haya una conexión entre los 3. 

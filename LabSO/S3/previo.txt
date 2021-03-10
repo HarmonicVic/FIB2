@@ -1,0 +1,51 @@
+Al ejecutar ejemplo_fork1 aparece en la terminal:
+Soy el proceso 22980
+Soy el proceso 22981
+
+Primero escribe el hijo ya que es el creado por fork(), y fork() es substituido por el programa hijo, el cual ejecuta e imprime su pid. Despues de esto el hijo muere y el padre acaba de ejecutar imprimiendo su pid propio.
+
+Al ejecutar ejemplo_fork2 aparece en la terminal:
+Antes del fork: Soy el proceso 23361
+PADRE: Soy el proceso 23361
+Los DOS: Soy el proceso 23361
+HIJO: Soy el proceso 23362
+Los DOS: Soy el proceso 23362
+
+Primero se ejecuta una escriptura en pantalla donde el programa escribe su pid. Despues el padre imprime su pid en el switch ya que pid != 0 && != -1, se imprime el pid al final del switch y el padre ya ha terminado. Despues el hijo imprime su linea del switch ya que el pid es 0 y al final imprime su pid fuera del switch, terminando el programa hijo.
+
+Al ejecutar ejemplo_fork3 aparece en la terminal:
+Antes del fork: Soy el proceso 23648
+PADRE: Soy el proceso 23648
+Solo lo ejecuta el padre: Soy el proceso 23648
+HIJO: Soy el proceso 23649
+
+Primero el programa principal escribe su pid, despues el padre (el mismo proceso que antes) escribe su pid (por ello el pid sigue siendo el mismo). Despues ejecuta el write fuera del switch. Por ultimo el hijo ejecuta e imprime su pid, acabando el programa con exit();
+
+Al ejecutar ejemplo_fork4 aparece en la terminal:
+Antes del fork: Soy el proceso 23793
+PADRE: Soy el proceso 23793
+Solo lo ejecuta el padre: Soy el proceso 23793
+HIJO: Soy el proceso 23794
+HIJO acaba: Soy el proceso 23794
+
+Para empezar el programa principal (padre) imprime su pid. Despues el padre imprime su pid en el switch y acaba imprimiendo el write() fuera del switch. Despues el hijo ejecuta su primer write() para imprimir su pid, hace el bucle for() y ejecuta el siguiente write() antes de terminar con un exit();
+
+Al ejecutar ejemplo_fork5 aparece en la terminal:
+Antes del fork: Soy el proceso 24035
+PADRE: Soy el proceso 24035
+HIJO: Soy el proceso 24036
+HIJO:La variable_global vale A y la local a
+PADRE:La variable_global vale A y la local a
+Solo lo ejecuta el padre: Soy el proceso 24035
+
+Primero se ejecuta el write() del pid del programa principal (padre), despues el padre imprime su pid en el default case y con waitpid() espera a que su hijo acabe su rutina. El hijo entonces en el case 0 imprime su pid, imprime las variables y termina su ejecucion con exit(). Finalmente el proceso padre sale del waitpid() e imprime las variables e imprime el ultimo write() fuera del switch. 
+
+El contenido del fichero output 6 es una repeticion larga de write() del padre y del hijo de forma intercalada. Esto es a causa de varios for loops enormes que llaman a la funcion Escribe_variable_global() para escribir la variable, cambiandola cada 10000 repeticiones.
+
+ejemplo_fork7.c no compila porque la variable local no esta declarada fuera del scope del main, es decir que hace falta pasar su valor a la funcion externa para que esta variable pueda ser usada ahi. 
+
+Al ejecutar ejemplo_exec1 primero se imprime el pid del programa y se ejecuta el comando "ls" en consola. El segundo write() no se ejecuta porque ls no es un proceso hijo, por tanto no se vuelve al programa principal al terminar con ls.
+
+Al ejecutar ejemplo_exec2 primero imprime el pid con el primer write(), luego ejecuta el programa ejemplo_fork1 en el cual se imprime su pid, y para finalizar imprime un tercer pid, el del hijo de ejemplo_fork1.
+
+En cuanto a fuentes he consultado el man para fork(), wait() y waitpid(), este ultimo porque la terminal me daba varios warnings al respecto. Tambien he consultado stack overflow para varias dudas sobre fork(), ya que no comprendia mucho el orden que siguen los programas al hacer el fork(). Despues de hacer el previo solo estoy un 30% mas convencido que antes de que se como funciona realmente el fork().

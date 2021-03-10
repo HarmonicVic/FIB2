@@ -1,0 +1,15 @@
+A)
+    Si se quiere conseguir la entrada del fichero sin tener que abrirlo cada vez en hijo2.c, se puede crear una fifo que
+    se herede por cada uno de los fork() como nueva entrada stdin, haciendo que el spawnF sea el que abre el fichero y lo
+    envia a todos los hijos por la fifo. 
+
+B)
+    mkfifo("NP", 0666);
+
+    dentro del codigo de cada child:
+
+    int fd = open("NP", O_RDONLY);
+    dup2(fd, STDIN_FILENO);
+
+    el fd tiene el file descriptor de la pipe, y el dup2 cierra el stdin y lo sustituye por el fd, haciendo que 
+    el programa mutado a partir de execlp tenga como entrada '0' a la entrada de la fifo.

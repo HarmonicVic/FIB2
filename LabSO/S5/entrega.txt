@@ -1,0 +1,11 @@
+Pregunta 35:
+Aparece solamente la variable globalArray ya que es una variable global. Ocupa la direccion 0000000000601080. 
+Esta ubicada en el BSS ya que no esta inicializada, en la region data.
+
+Pregunta 36:
+El ejecutable static es magnitudes mas grande que el dynamic en todos los casos. Con nm vemos que static usa mucho mas espacio, 
+con objdump vemos que usa muchas mas instrucciones en el caso de static, y en cuanto a los tamaños, dynamic ocupa 12,5kiB, y el static 4,5MB.
+
+Pregunta 37:
+El proceso static tiene muchas menos lineas, ya que faltan etiquetas en el heap. El proceso static tambien ocupa mucho mas espacio en general.
+

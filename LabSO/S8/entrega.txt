@@ -1,0 +1,7 @@
+Entrega 8:
+    67) El fichero contiene "Inicio" y "Fin", es decir, contiene las dos salidas.
+    
+    68) Si no cierro el canal, el cat se queda bloqueado esperando mas entradas
+    desde la pipe, haciendo que no acabe nunca.
+
+    

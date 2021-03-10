@@ -1,0 +1,17 @@
+S1:
+1) mkdir LabSO y después mkdir S1 S2 S3 S4 S5
+2) Ls para el contenido, y ls -la para el contenido oculto
+3) Ls -l. Se ve el directorio con permisos de usuario, grupo y otros en la primera columna, cuantos links hay a cada archivo, quien es el propietario, quien es el propietario (grupo), el tamaño que ocupa, el fecha y hora de la ultima modificacion y finalmente el nombre del archivo/carpeta.
+4) En 'Control', he pulsado sobre 'View mode' y he puesto 'Details'. Se pueden añadir mas detalles con 'Additional information'.
+5) Rmdir, ls y mkdir
+6) Cat muestra el contenido del fichero que especificas en la propia consola. Less muestra el contenido en una nueva ventana de la consola, donde solo esta ese contenido, y hay que salir con q. Es ma util verlo con less ya que no hay nada que no pertenezca al contenido del fichero. 
+7) -i significa interactive, sirve para pedir confirmacion a la hora de hacer una copia que sobreescribe, sino no pregunta nada. #alias cp=’cp –i’
+8) Rm -i pide confirmacion antes de eliminar un archivo y mv -i pide confirmacion antes de sobreescribir si los nombres coinciden. #alias rm=’rm –i’
+9) Para quitar el permiso de lectura, he escrito chmod -r filename.txt, y para quitar el permiso de escritura, he escrito chmod -w filename.txt. Al ejecutar cat > filename.txt, me devuelve “permiso denegado” cuando la escritura esta denegada, y cuando la lectura esta denegada, hacer cat filename.txt me da permiso denegado. He conseguido borrarlo pero la consola me ha advertido de que el fichero esta protegido contra escritura y lectura, pidiendo confiramcion para borrar.
+10) HOME es el directorio por defecto, PATH es una variable que le dice al sistema donde buscar ejecutables, y PWD dice donde estas actualmente en cuanto al directorio.
+11) Los dos puntos ':'
+12) Para definir la variable he usado export, y para consultarlo, echo con $.
+13) Despues de agregar el '.' en PATH, con ls se ejecuta el archivo descargado. 
+14) Si, ya que el '.' define al directorio actual, el que hemos agregado en PATH. Esto implica que cualquier directorio actual podra formar parte de PATH, lo que hara que se puedan ejecutar los ejecutables directamente.
+15) Despues de poner el punto al final, se ha ejecutado el ls del sistema. 
+16) > borra lo que haya habido anteriormente en el archivo y escribe la salida del comando ejecutado, mientras que >> no sobreescribe, sino que escribe la salida en la linia posterior al final del archivo.

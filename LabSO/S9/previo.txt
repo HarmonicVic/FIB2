@@ -1,0 +1,47 @@
+Previo S9:
+    1) Escribiendo "df -T" en la consola escribe los sistemas de ficheros en el sistema. T añade la columna de tipo de fichero.
+        La ultima columna "Mounted on" indica en que directorios estan montados.
+    2) "df -i" en la consola. La terminal escribe los inodos libres, los ocupados, el num. total, etc.
+    3) Con "df -h" se puede pedir que se escriban los valores en formato entendible para un humano, como KB, MB, GB, etc. Algunas
+        distros lo tienen añadido por defecto como alias de "df", como es mi caso.
+    
+
+    4) sl_pr es un soft link o un symbolic link, mientras que hl_pr es un hard link.
+        inodos:
+            pr.txt -> 801820 -> 2 links
+            sl_pr -> 804156 -> 1 link
+            hl_pr -> 801820 -> 2 links
+       El valor "links" es el numero de archivos que comparten el mismo inodo. 
+       El hard link y el fichero original comparten inodos ya que el hard link es un link que actua mas como una copia del original,
+       teniendo el mismo inodo y manteniendose en caso que el original sea borrado. El soft link tiene un inodo distinto ya que es un puntero,
+       nada mas.
+
+    5) "cat" no presenta ninguna diferencia en los 3 ficheros. 
+        "namei" imprime lo siguiente:
+            pr.txt: f: pr.txt
+                     - pr.txt
+            hl_pr:  f: hl_pr
+                     - hl_pr
+            sl_pr:  f: sl_pr
+                     l sl_pr -> pr.txt
+                       - pr.txt
+
+        "readlink" solo imprime con sl_pr: pr.txt
+
+        "namei" ejecuta distinto con sl_pr ya que es un soft link. Los hard links ya son un punto final cuando son buscados por namei,
+        mientras que los soft links apuntan a otro archivo. Por lo tanto, namei sobre el soft link imprime el siguiente archivo.
+        "readlink" solo funciona con sl_pr ya que para eso sirve el comando, para imprimir el camino de un symbolic link.
+
+    6) "stat" devuelve lo mismo para los dos ficheros, con la diferencia que ahora sl_pr tiene tamaño 0 blocks. 
+        "cat" para hl_pr devuelve lo mismo que tenia antes, ya que es un hard link como dije en la pregunta anterior. sl_pr no devuelve nada. 
+        "namei" devuelve f: sl_pr
+                         l sl_pr -> pr.txt
+                         pr.txt - No such file or directory
+        no hay nada distinto con "namei" para hl_pr. 
+        "readlink" devuelve lo mismo que antes.
+        Las diferencias antes y despues de borrar pr.txt son evidentes. Un hard link es una "copia" del fichero original y va cambiando juntamente 
+        al original, estan "sincronizados", mientras que un soft link solo es un puntero. Cuando se borra el archivo original, un hard link sigue
+        teniendo la informacion del archivo original ya que es una copia, mientras que el soft link pierde el archivo al que apunta. 
+        
+
+

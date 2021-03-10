@@ -1,0 +1,26 @@
+Pregunta 18: 
+fork() devuelve el pid del hijo al terminar. Este return se puede almacenar en una 
+variable.
+Para consultar el propio pid se usa getpid();
+
+Pregunta 19:
+Si execlp() falla, no se ejecuta ningun otro codigo. En este caso cuando insertas
+un usuario que no existe, ps se queja y no se ejecuta error_y_exit(), que es el codigo
+que viene a continuacion.
+
+Pregunta 20:
+En el PID_PADRE estan los directorios:
+    -attr
+    -fd
+    -fdinfo
+    -map_files
+    -net
+    -ns
+    -task
+He usado ls -la para ver ls en modo lista y con los ficheros ocultos.
+
+Pregunta 21:
+env devuelve la misma informacion que environ, pero environ no esta fomrateado para 
+la lectura humana. environ es para la lectura de maquina, env es para la lectura humana.
+Status:
+El proceso padre (5616) esta ejecutandose (R), el CPU consumido = 181943.

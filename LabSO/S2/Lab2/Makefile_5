@@ -1,0 +1,6 @@
+suma: suma.c mis_funciones.c
+    gcc -c suma.c mis_funciones.c
+    gcc -o suma.exe suma.o mis_funciones.o
+clean:
+    rm suma.o
+    rm mis_funciones.o

@@ -1,0 +1,25 @@
+Previo:
+
+ alarm1:
+ 1. A los 5 segundos no ocurre nada, ya que la alarma es de 10 segundos.
+ 2. El comportamiento no es el mismo, ya que aparece "killed" en la consola y el proceso se termina.
+ 3. El shell recoge los mensajes y la llamada que recoge el estado de finalizacion es waitpid().
+ 4. El exit no es necesario, ya que cuando alarm llega a 0, el proceso termina sin necesidad del exit().
+
+ alarm2:
+ 1. Cada vez que mando la señal, imprime que han pasado 10 segundos. El tiempo no funciona como esta previsto.
+ 2. No se pueden cambiar todos. Por ejemplo sigkill no puede ser cambiado.
+ 3. El valor de retorno de alarm() es el numero de segundos que faltan en la alarma. Se podria arreglar el codigo
+    haciendo que cuando llegue kill -alrm se imprima la suma del total de segundos + el valor de retorno de alarm().
+
+alarm3:
+1.  Lo reciben los dos procesos, ya que el fork() es declarado en el if y el while no tiene ningun if statement para 
+    comprobar quien esta usando SIGALRM. 
+
+alarm4:
+1.  Cada proceso programa 1 SIGALRM. La alarma la recibe el hijo, ya que comprueba que fork() = 0 en el switch.
+
+LAB: 
+Pregunta 28: El padre ejecuta el SIGALRM por defecto, lo que imprime "Alarm" en la consola y mata al padre, mientras que el hijo sigue funcionando a causa de la funcion definida.
+
+Pregunta 29: La tabla de signals se resetea cuando se ejecuta execlp. Se pone por defecto. 

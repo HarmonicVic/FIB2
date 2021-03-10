@@ -1,0 +1,7 @@
+Lab sesión 2 ---------- Viktor Valeriev
+
+Para entregar: sesion02.tar.gz
+
+#tar zcfv sesion02.tar.gz entrega.txt makefile_1 listaParametros.c makefile_4 mis_funciones.h
+mis_funciones.c suma.c punteros.c makefile_5 words.c makefile 
+

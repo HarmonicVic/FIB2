@@ -1,0 +1,16 @@
+preguntas lab s7:
+
+55: 1 ->    ps
+            ps 
+    
+    2 ->    es1 < /dev/pts/4
+
+    3 ->    es1 | es1 
+
+    En las dos ejecuciones de strace es evidente que la version original 
+    del programa es ineficiente ya que llama a read para cada caracter,
+    mientras que la v2 llama read 1 vez por cada cantidad de texto que llenaria
+    al buffer propuesto. Como el buffer que he puesto es de 1000 bytes, read se 
+    ha llamado 1 vez para 1000 bytes, otra vez para 467 bytes y una tercera, donde 
+    no hay mas datos para leer, ret = 0 y el programa acaba.
+    El rendimiento de la v1 es horrendo en comparacion, read es llamado 1467 veces. 

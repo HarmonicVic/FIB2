@@ -1,0 +1,43 @@
+Sesion 8:
+    1) Los comandos usados en el primer punto son:
+        #mknod fifo p
+        #cat > fifo -> 1r terminal
+        #cat fifo -> 2ndo terminal
+    
+    2) No podemos hacer este procedimiento entre dos shells. Cuando no pones ningun filename a cat en shell, cat por defecto lee de la std input y escribe en la output,
+       es decir, cuando ejecutas #cat o #cat - ,lee e imprime en la misma terminal. Se puede tambien hacer #cat | cat y se consigue el mismo efecto.   
+
+    3) Este codigo es parte de un posible programa que ejecutaria #cat abc | grep d, usando fork para que el hijo ejecute 
+        el codigo asociado a grep y el padre ejecute el codigo asociado a cat
+
+        int pipefd[2]; 
+        //parte derecha de '|'
+        dup2(pipefd[0], 0); //reemplaza la std input con la input de la pipe
+        close(pipefd[1]);   //cierra la parte de la pipe sin uso
+        //execlp("grep", "grep", "d", NULL);
+
+        //parte izquierda de '|'
+        dup2(pipefd[1], 1); //reemplaza la std output con la output de la pipe
+        close(pipefd[0]);   //cierra la parte de la pipe sin uso
+        //execlp("cat", "cat", "abc", NULL);
+    
+    4) createSocket es una funcion que crea el socket y lo inicializa para que pueda aceptar conexiones. Tiene como argumento *socketId.
+        
+        -Crea la struct sockaddr_un y lo llama socketAddr, la que describe la address de un AF_LOCAL socket.
+        -Copia con strcpy el socketId que ha sido pasado como argumento a la funcion a socketAddr.sun_path
+        -socket() crea el nuevo socket tipo SOCK_STREAM en el dominio AF_UNIX, con un protocolo elegido automaticamente.
+         Devuelve un integer positivo, el socket file descriptor, y en caso de error devuelve -1. Por esto hay un if que 
+         captura este posible error.
+        -bind() le da a socket_fd la local address socketAddr (aqui con un typecast a struct sockaddr *), con una largada de socketAddr en bytes.
+         Devuelve -1 en caso de error, de lo contrario devuelve 0.
+        -listen() prepara para aceptar unas PENDINGCONNECTIONS conexiones de socket_fd, PENDINGCONNECTIONS siendo 10 en este programa concreto.
+         Las requests en cola despues de la nº10 son denegadas. Devuelve 0 en caso de success, -1 en caso de error.
+        -Despues de bind() y listen() hay unos ifs que tratan los errores de estos llamando close() para cerrar el socket_fd.
+        -Si todo funciona correctamente, la funcion devuelve socket_fd, el device virtual asociado al socket.
+
+    serverConnection es una funcion que devuelve el file descriptor asociado a la conexion. Tiene como argumento el socket_fd.
+
+        -accept() espera una conexion a socket_fd. Cuando una conexion llega, abre un nuevo socket para comunicarse con esta, 
+         poniendo sockAddr como address del peer que conecta y addrSize como la address length. 
+         Devuelve el socket descriptor o -1 en caso de error.
+

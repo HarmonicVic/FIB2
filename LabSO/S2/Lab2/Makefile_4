@@ -1,0 +1,5 @@
+suma: suma.c
+    gcc -c suma.c
+    gcc -o suma.exe suma.o
+clean:
+    rm suma.o

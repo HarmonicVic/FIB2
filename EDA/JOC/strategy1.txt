@@ -1,0 +1,42 @@
+PLAN:    fighting for 1st 50% of game, then full flee and recover money, fight otherwise
+
+WHAT DO I WANT TO DO DURING THE DAY:
+    BOTH:
+    -if touching cell is money, take it
+
+    BUILDERS:
+    -builder builds barricades 
+    -if barricade built to lvl 2, look for money
+    -if builder HP < 50%, start taking food, otherwise ignore
+    -builder also works as search for weapons, if builder finds weapon, tells warriors
+
+    WARRIORS:
+    -search for weapons with warriors, if hp != full, take food if in touching cell
+    -if warrior HP < 60%, start looking for food
+    -if warrior finds better weapon, takes it, if weapon <= warrior, warrior tells other warriors about weapon pos and id
+
+
+WHAT DO I WANT TO DO DURING THE NIGHT:
+    BOTH:
+    -if touching cell is money, take it 
+
+    BUILDERS:
+    -builder protects himself during night with barricades if chased
+    -if not chased, look for money
+
+    WARRIORS:
+    -warriors look for other players
+    -if touching cell is player && weapon > hammer, attack
+    -if HP < 30%, search for food, don't attack, flee away from enemies
+
+
+BEFORE 50% OF ROUNDS:
+    -prioritize searching for weapons 
+    -fight if weapon >= gun
+    -take money if found
+
+
+AFTER 50% OF ROUNDS:
+    -prioritize survival (30% threshold, flee if necessary)
+    -fight if weapon == bazooka
+    -search for money

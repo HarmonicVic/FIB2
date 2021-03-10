@@ -1,0 +1,19 @@
+1) ln $HOME/A $HOME/A/H ha fallado con: 
+    "ln: /home/victor/A: hard link not allowed for directory"
+2) haciendo stat a todos los archivos y mirando los inodos es facil ver que:
+    D es un archivo
+    E es un soft link al directorio A 
+    F es un soft link a D
+    G es un hard link a D ya que comparten inodo
+3) usando more da el mismo resultado para todos menos E, ya que E es un soft link a un directorio.
+    usando cat da el mismo resultado que more.
+    usando readlink solo devuelve algo para E y F, escribiendo los ficheros a los que apuntan los dos soft links.
+4) se realizan los mismos accesos para F, ya que apunta directamente al fichero D.
+    cuando se usa un soft link a una ruta absoluta, se hacen mas pasos para llegar al objetivo que si fuera relativa, 
+    ya que se hace el camino desde root como en el caso de E.
+5) cat tiene una proteccion cuando supera un numero desconocido de accesos y devuelve:
+    "cat: K: Too many levels of symbolic links"
+    namei imprime una cadena de accesos hasta que en un punto devuelve:
+    "namei: K: exceeded limit of symlinks"
+
+

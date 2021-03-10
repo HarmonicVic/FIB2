@@ -1,0 +1,44 @@
+Preguntas sesion 7:
+
+es1 -> 
+    1. Con Ctrl+D el programa termina y devuelve "fin de la ejecución."
+
+    2. es1 < previo.txt (he usado el propio previo como entrada).
+
+    -rwxr-xr-x 1 root   root  12368 Nov 21 17:28 es1
+    -rw-r--r-- 1 victor users  1099 Nov 21 17:28 es1.c
+    -rwxr-xr-x 1 root   root  12600 Nov 21 17:28 es2
+    -rw-r--r-- 1 victor users  1467 Nov 21 17:28 es2.c
+    -rwxr-xr-x 1 root   root  12416 Nov 21 17:28 es3
+    -rw-r--r-- 1 victor users   884 Nov 21 17:25 es3.c
+    -rwxr-xr-x 1 root   root  12312 Nov 21 17:28 es4
+    -rw-r--r-- 1 victor users  1093 Nov 21 17:25 es4.c
+    -rwxr-xr-x 1 root   root  12024 Nov 21 17:28 es5
+    -rw-r--r-- 1 victor users    40 Nov 21 17:28 es5.c
+    -rwxr-xr-x 1 root   root  12312 Nov 21 17:28 es6
+    -rw-r--r-- 1 victor users   103 Nov 21 17:25 es6.c
+    -rwxr-xr-x 1 root   root  12264 Nov 21 17:28 es7
+    -rw-r--r-- 1 victor users   109 Nov 21 17:28 es7.c
+    -rwxr-xr-x 1 root   root  12424 Nov 21 18:27 es7_lector
+    -rw-r--r-- 1 victor users   203 Nov 21 18:27 es7_lector.c
+    -rwxr-xr-x 1 root   root  12368 Nov 21 17:28 es8
+    -rw-r--r-- 1 victor users   624 Nov 21 17:27 es8.c
+
+    El comando grep es busca todos los strings que contengan el substring "es". En este caso aparecen todos los ficheros es%.
+    
+    3. ps -o user,pid,cmd. No he encontrado una forma de hacerlo con grep.
+
+es8 ->
+    5. En el caso de representacion interna se escriben 4 bytes y el formato es incomprensible para el usuario, mientras que 
+    cuando se convierte primero en string se escriben 5 bytes (1 byte por cada cifra del int). El numero es comprensible para el 
+    usuario.
+    
+    6.
+        a) La funcion para el read especifico de cada driver es "read_driver_x" con 'x' siendo el num del driver correspondiente.
+        
+        b) El major es el numero que representa el tipo de dispositivo (mouse, teclado, monitor, etc.), y el minor representa
+        la instancia de ese tipo de dispositivo concreto. Por ejemplo si tienes 2 monitores conectados al PC y el major fuese '1',
+        monitor1 -> major = 1, minor = 0, y monitor2 -> major = 1, minor = 1. Estos numeros sirven para identificar el dispositivo 
+        concreto. 
+        Driver1 -> major = 249, minor = 0
+        Driver2 -> major = 250, minor = 0
