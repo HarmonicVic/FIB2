@@ -1,13 +1,8 @@
-
 CC = gcc
 CFLAGS = -g -Wall -m32
 SRC0 = Main.c Asignar.c Buscar.c BuscarElemento.c Insertar.c Intercambiar.c Ordenar.c Volcar.c elemento.h
 SRC1 = Main.c Asignar.c Buscar.c BuscaElemento.s Insertar.c Intercambiar.c Ordenar.c Volcar.c elemento.h
 SRC2 = Main.c Asignar.c Busca.s BuscaElemento.s Insertar.c Intercambiar.c Ordenar.c Volcar.c elemento.h
-
-
-
-
 
 test0: 
 	$(CC) $(CFLAGS) -o Sesion04-0 $(SRC0)
