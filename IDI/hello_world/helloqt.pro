@@ -1,6 +1,0 @@
-TEMPLATE=app
-QT+=widgets
-DEPENDPATH+=.
-INCLUDEPATH+=.
-#Input
-SOURCES+=ex2.cc
