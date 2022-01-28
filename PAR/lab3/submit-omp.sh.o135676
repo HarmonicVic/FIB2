@@ -1,0 +1,12 @@
+make: 'mandel-omp' is up to date.
+
+Computation of the Mandelbrot set with:
+    center = (0, 0) 
+    size = 2
+    maximum iterations = 10000
+
+Total execution time (in seconds): 3.916477
+
+Mandelbrot set: Computed
+Histogram for Mandelbrot set: Computed
+Writing output file to disk: output_omp_1.out
